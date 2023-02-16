@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="end-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App</title>
+        <link rel="stylesheet" href="weather.css">
+    </head>
+    <body>
+        <span id="api-credit">API by <a href="https://open-meteo.com" target="_blank">Open-Meteo</a></span>
+        <div id="main-container">
+            <div id="search-bar">
+                <div id="search-box-container">
+                    <i id="search-icon" class="bi bi-search"></i>
+                    <input id="search-box" type="text" placeholder="Search For Location">
+                    <i id="loading-icon"></i>
+                    <button id="location-btn">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </button>
+                </div>
+                <ul id="search-resultbox"></ul>
+            </div>
+            <div id="topbar">
+                <span id="current-location-info">Choose Your Location...</span>
+                <input id="temp-unit-checkbox" type="checkbox">
+                <label id="temp-unit-container" for="temp-unit-checkbox">
+                    <span id="temp-unit-toggle">
+                        &#176C &#176F
+                    </span>
+                    <span id="toggle-thumb"></span>
+                </label>
+            </div>
+            <div id="navbar">
+                <button>TODAY</button>
+                <button>HOURLY</button>
+                <button>DAILY</button>
+            </div>
+
+            <div id="today-weather-container" class="navpage">
+                <div id="today-weather-summary">
+                    <span id="today-location-details"></span>
+                    <i id="today-weather-icon" class="bi bi-clouds-fill"></i>
+                    <span id="today-weather-status">
+                        <span id="today-temp"></span><br>
+                        <span id="today-sky-status"></span>
+                    </span>
+                    
+                </div>
+
+                <!--Today Page-->
+                <div id="today-details">
+                    <!--<div>
+                        <i class="bi bi-thermometer-half"></i>
+                        <span class="detail-title">High/Low</span>
+                        <span class="detail-value">11&#176/4&#176</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-r-square"></i>
+                        <span class="detail-title">Real Feel</span>
+                        <span class="detail-value">5&#176</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-wind"></i>
+                        <span class="detail-title">Wind</span>
+                        <span class="detail-value">36 Km/h</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-moisture"></i>
+                        <span class="detail-title">Humidity</span>
+                        <span class="detail-value">11%</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-brightness-low"></i>
+                        <span class="detail-title">UV Index</span>
+                        <span class="detail-value">0/10</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-clouds"></i>
+                        <span class="detail-title">Cloud Cover</span>
+                        <span class="detail-value">55%</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-eye"></i>
+                        <span class="detail-title">Visibility</span>
+                        <span class="detail-value">12.88 km</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-lungs"></i>
+                        <span class="detail-title">AQI</span>
+                        <span class="detail-value">46 (Good)</span>
+                    </div>-->
+                </div>
+            </div>
+
+            <!--Hourly Page-->
+            <div id="hourly-container" class="navpage">
+                <!--<div class="forecast-element">
+                    <span class="forecast-element-time">11PM</span>
+                    <i class="bi bi-sun forecast-element-icon"></i>
+                    <span class="forecast-element-temp">5&#176</span>
+                    <span class="forecast-element-status">clear</span>
+                    <i class="bi bi-chevron-down forecast-element-arrow"></i>
+                    <div class="forecast-element-detail">
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-wind detail-icon"></i>
+                            <span class="detail-title">Wind</span>
+                            <span class="detail-value">36 Km/h</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-moisture detail-icon"></i>
+                            <span class="detail-title">Humidity</span>
+                            <span class="detail-value">11%</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-brightness-low detail-icon"></i>
+                            <span class="detail-title">UV Index</span>
+                            <span class="detail-value">0/10</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-clouds detail-icon"></i>
+                            <span class="detail-title">Cloud Cover</span>
+                            <span class="detail-value">55%</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-eye detail-icon"></i>
+                            <span class="detail-title">Visibility</span>
+                            <span class="detail-value">12.88 km</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-speedometer2 detail-icon"></i>
+                            <span class="detail-title">AQI</span>
+                            <span class="detail-value">46 (Good)</span>
+                        </div>
+                    </div>
+                </div>
+            <div class="forecast-element">
+                    <span class="forecast-element-time">11PM</span>
+                    <i class="bi bi-sun forecast-element-icon"></i>
+                    <span class="forecast-element-temp">5&#176</span>
+                    <span class="forecast-element-status">clear</span>
+                    <i class="bi bi-chevron-down forecast-element-arrow"></i>
+                    <div class="forecast-element-detail">
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-wind detail-icon"></i>
+                            <span class="detail-title">Wind</span>
+                            <span class="detail-value">36 Km/h</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-moisture detail-icon"></i>
+                            <span class="detail-title">Humidity</span>
+                            <span class="detail-value">11%</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-brightness-low detail-icon"></i>
+                            <span class="detail-title">UV Index</span>
+                            <span class="detail-value">0/10</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-clouds detail-icon"></i>
+                            <span class="detail-title">Cloud Cover</span>
+                            <span class="detail-value">55%</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-eye detail-icon"></i>
+                            <span class="detail-title">Visibility</span>
+                            <span class="detail-value">12.88 km</span>
+                        </div>
+                        <div class="forecast-element-detail-item">
+                            <i class="bi bi-speedometer2 detail-icon"></i>
+                            <span class="detail-title">AQI</span>
+                            <span class="detail-value">46 (Good)</span>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+            <!--Daily Page-->
+            <div id="daily-container" class="navpage">
+               <!-- <div class="forecast-element">
+                    <span class="forecast-element-time">11PM</span>
+                    <i class="bi bi-sun forecast-element-icon"></i>
+                    <span class="forecast-element-temp">5&#176/-2&#176</span>
+                    <span class="forecast-element-status">clear</span>
+                    <i class="bi bi-chevron-down forecast-element-arrow"></i>
+
+                    <div class="forecast-element-detail">
+                        <div class="detail-day-container">
+                            <div class="forecast-element-detail-item day-night-head"> 
+                                <span class="detail-title">DAY |</span>
+                                <i class="bi bi-sun daily-item-icon"></i>
+                                <span class="detail-title">5&#176</span>
+                                <span class="detail-title">Clear</span>
+                            </div>
+                            <div class="forecast-element-detail-item">
+                                <i class="bi bi-wind detail-icon"></i>
+                                <span class="detail-title">Wind</span>
+                                <span class="detail-value">36 Km/h</span>
+                            </div>
+                            <div class="forecast-element-detail-item">
+                                <i class="bi bi-moisture detail-icon"></i>
+                                <span class="detail-title">Humidity</span>
+                                <span class="detail-value">11%</span>
+                            </div>
+                        </div>
+                        <div class="detail-night-container">
+                            <div class="forecast-element-detail-item day-night-head"> 
+                                <span class="detail-title">Night |</span>
+                                <i class="bi bi-moon daily-item-icon"></i>
+                                <span class="detail-title">5&#176</span>
+                                <span class="detail-title">Clear</span>
+                            </div>
+                            <div class="forecast-element-detail-item">
+                                <i class="bi bi-wind detail-icon"></i>
+                                <span class="detail-title">Wind</span>
+                                <span class="detail-value">36 Km/h</span>
+                            </div>
+                            <div class="forecast-element-detail-item">
+                                <i class="bi bi-moisture detail-icon"></i>
+                                <span class="detail-title">Humidity</span>
+                                <span class="detail-value">11%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    <script src="weather.js"></script>
+    </body>
+</html>
