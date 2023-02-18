@@ -1,5 +1,4 @@
 let locationListHandler = (function () {
-    let geoData = null;
     let timer = 0;
     async function getGeoData(city) {
         let queryString = `https://geocoding-api.open-meteo.com/v1/search?name=${city}`;
@@ -155,8 +154,7 @@ let weatherResults = (function () {
             document.getElementById('today-weather-summary').style.backgroundImage = 
             `url(pics/${weatherState[2]}.jpg)`;
 
-            document.getElementById('today-weather-icon')
-            .setAttribute("class", `bi bi-${weatherState[1]}`);
+            document.getElementById('today-weather-icon').style.backgroundImage = `url(icons/${weatherState[1]}.svg)`;
             document.getElementById('today-sky-status').innerHTML = weatherState[0];
 
             // Today weather details 
@@ -212,7 +210,7 @@ let weatherResults = (function () {
                 let time =  forecastDate.toLocaleTimeString([], {hour: '2-digit'});
                 let parent = document.createElement('DIV');
 
-                let code = hourlyData.weathercode[i];// maybe we can refactor this part of the code (merge into weatherState)
+                let code = hourlyData.weathercode[i];
                 let isDay;
                 let sunrise = new Date(res.weather.daily.sunrise[0]);
                 let sunset = new Date(res.weather.daily.sunset[0]);
@@ -223,13 +221,15 @@ let weatherResults = (function () {
                 parent.setAttribute('class', "forecast-element");
                 parent.innerHTML = 
                 `<span class="forecast-element-time">${time}</span>
-                <i class="bi bi-${weatherState[1]} forecast-element-icon"></i>
+                <i class="forecast-element-icon hourly-icon"></i>
                 <span class="forecast-element-temp">${Math.round(hourlyData.temperature_2m[i])}&#176</span>
                 <span class="forecast-element-status">${weatherState[0]}</span>
                 <i class="bi bi-chevron-down forecast-element-arrow hourly-arrow"></i>
                 <div class="forecast-element-detail hourly-detail"></div>`;
 
                 grandPa.appendChild(parent);
+                document.querySelectorAll(".hourly-icon")[i - spanStart].style.backgroundImage = 
+                `url(icons/${weatherState[1]}.svg)`;
 
                 //forecast item detailed data
                 let detailValues = [
@@ -293,13 +293,16 @@ let weatherResults = (function () {
                 parent.setAttribute('class', "forecast-element");
                 parent.innerHTML = 
                 `<span class="forecast-element-time">${demoDate}</span>
-                <i class="bi bi-${weatherState[1]} forecast-element-icon"></i>
+                <i class="forecast-element-icon daily-icon"></i>
                 <span class="forecast-element-temp">${Math.round(dailyData.temperature_2m_max[i])}&#176/${Math.round(dailyData.temperature_2m_min[i])}&#176</span>
                 <span class="forecast-element-status">${weatherState[0]}</span>
                 <i class="bi bi-chevron-down forecast-element-arrow daily-arrow"></i>
                 <div class="forecast-element-detail daily-detail"></div>`;
 
                 grandPa.appendChild(parent);
+
+                document.querySelectorAll(".daily-icon")[i].style.backgroundImage = 
+                `url(icons/${weatherState[1]}.svg)`;
 
                 let sunrise = (new Date(dailyData.sunrise[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 let sunset = (new Date(dailyData.sunset[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -376,8 +379,6 @@ let weatherResults = (function () {
                 
                 document.getElementById('today-location-details').innerHTML = 
                 `${locationData.city} weather as of ${time}`;
-
-                clearItems();
                 
                 let startDate = `${date.getFullYear()}-${("0" + (date.getMonth()+1)).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
                 let endDate = `${date2.getFullYear()}-${("0" + (date2.getMonth()+1)).slice(-2)}-${("0" + date2.getDate()).slice(-2)}`;
@@ -395,6 +396,7 @@ let weatherResults = (function () {
                 promise.then((res) => {
                     document.getElementById('loading-icon').style.display = "none";
                     activeNav(1, 0);
+                    clearItems();
                     todayWeather(res, date);
 
                     document.getElementById('navbar').childNodes[1].addEventListener('click', function() {
@@ -429,33 +431,33 @@ function weatherStatusDemo(code, isDay) {
 
     const weatherCodes = {
         "0": ["Clear", isDay?"sun-fill":"moon-stars-fill", isDay?"clear_day":"clear_night"],
-        "1": ["Mainly clear", isDay?"sun-fill":"moon-fill", isDay?"mainly_clear_day":"partly_cloudy_night"],
+        "1": ["Mainly clear", isDay?"sun-fill":"moon-stars-fill", isDay?"mainly_clear_day":"partly_cloudy_night"],
         "2": ["Partly cloudy", isDay?"cloud-sun-fill":"cloud-moon-fill", isDay?"partly_cloudy_day":"partly_cloudy_night"],
         "3": ["Cloudy", "clouds-fill", isDay?"cloudy_day":"cloudy_night"],
         "45": ["Fog", "cloud-fog2-fill", isDay?"fog_day":"fog_night"],
         "48": ["Fog", "cloud-fog2-fill", isDay?"fog_day":"fog_night"],
         "51": ["Drizzle", "cloud-drizzle", isDay?"rainy_day":"rainy_night"],
         "53": ["Moderate drizzle", "cloud-drizzle", isDay?"rainy_day":"rainy_night"],
-        "55": ["Dense drizzle", "cloud-drizzle-fill", isDay?"rainy_day":"rainy_night"],
+        "55": ["Dense drizzle", "cloud-drizzle", isDay?"rainy_day":"rainy_night"],
         "56": ["Drizzle", "cloud-drizzle", isDay?"rainy_day":"rainy_night"],
-        "57": ["Dense drizzle", "cloud-drizzle-fill", isDay?"rainy_day":"rainy_night"],
+        "57": ["Dense drizzle", "cloud-drizzle", isDay?"rainy_day":"rainy_night"],
         "61": ["Slight Rain", "cloud-rain", isDay?"rainy_day":"rainy_night"],
         "63": ["Moderate rain", "cloud-rain-fill", isDay?"rainy_day":"rainy_night"],
-        "65": ["Heavy rain", "cloud-rain-heavy-fill", isDay?"rainy_day":"rainy_night"],
+        "65": ["Heavy rain", "cloud-rain-fill", isDay?"rainy_day":"rainy_night"],
         "66": ["Rain", "cloud-rain", isDay?"rainy_day":"rainy_night"],
         "67": ["Heavy rain", "cloud-rain-fill", isDay?"rainy_day":"rainy_night"],
         "71": ["Snow", "cloud-snow", isDay?"snowy_day":"snowy_night"],
         "73": ["Moderate snow", "cloud-snow", isDay?"snowy_day":"snowy_night"],
-        "75": ["Heavy snow", "cloud-snow-fill", isDay?"snowy_day":"snowy_night"],
+        "75": ["Heavy snow", "cloud-snow", isDay?"snowy_day":"snowy_night"],
         "77": ["Snow grains", "cloud-snow", isDay?"snowy_day":"snowy_night"],
         "80": ["Rain shower", "cloud-rain", isDay?"rainy_day":"rainy_night"],
         "81": ["Moderate rain shower", "cloud-rain-fill", isDay?"rainy_day":"rainy_night"],
-        "82": ["Heavy rain shower", "cloud-rain-heavy-fill", isDay?"rainy_day":"rainy_night"],
+        "82": ["Heavy rain shower", "cloud-rain-fill", isDay?"rainy_day":"rainy_night"],
         "85": ["Snow shower", "cloud-snow", isDay?"snowy_day":"snowy_night"],
-        "86": ["Heavy snow shower", "cloud-snow-fill", isDay?"snowy_day":"snowy_night"],
+        "86": ["Heavy snow shower", "cloud-snow", isDay?"snowy_day":"snowy_night"],
         "95": ["Thunderstorm", "cloud-lightning-fill", isDay?"thunder_day":"thunder_night"],
         "96": ["Thunderstorm", "cloud-hail", isDay?"thunder_day":"thunder_night"],
-        "99": ["Thunderstorm", "cloud-hail-fill", isDay?"thunder_day":"thunder_night"],
+        "99": ["Thunderstorm", "cloud-hail", isDay?"thunder_day":"thunder_night"],
     };
     return weatherCodes[code];
 }
