@@ -1,3 +1,6 @@
-# Note App
-A simple weather app with HTML/CSS/JS. The code may not be efficient, so I'm refactoring/optimizing it as I learn new things. Location button is not working for now (use the search bar instead). For now it just works. Give it a try! 
+# Weather App
+A simple weather app with HTML/CSS/JS. With two ways to choose a location: search bar and auto-locate.
+The JS code gathers location, weather and air quality data from [Open-Meteo](https://external.ink?to=/open-meteo.com) with fetch API and 
+displays the result in "Today", "Hourly" and "Daily" sections. The weather API is free, so you may notice inaccuracy in weather data.
+The code may not be efficient, so I'm refactoring/optimizing it as I learn new things. Location button is not working for now (use the search bar instead).
 [Weather App](https://scriptax.github.io/weather-app/)
