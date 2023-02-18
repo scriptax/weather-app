@@ -1,6 +1,11 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap');
+
+:root {
+    --myBlue: #4466ff;
+    --secondColor: #333;
+}
 * {
     box-sizing: border-box;
 }
@@ -16,12 +21,12 @@ body {
 }
 
 #api-credit {
-    font-size: 10pt;
     position: absolute;
     left: 50%;
     top: 97%;
     transform: translate(-50%, 0);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
 }
 
 /*Custom scrollbar*/
@@ -47,15 +52,17 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
-    background-color: white;
+    background-color: #fff;
     border-radius: 2px;
     box-shadow: 0px 5px 6px rgba(0,0,0,0.5);
     overflow-y: hidden;
 }
+
+/*search bar style and position*/
 #search-bar {
     padding: 20px 0;
     text-align: center;
-    background-color: #444;
+    background-color: var(--secondColor);
     width: 100%;
     height: 80px;
 }
@@ -69,24 +76,24 @@ body {
     width: 98%;
     height: 35px;
     outline: 0;
-    padding-left: 35px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding:  0 0 0 35px;
+    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
     font-size: 12pt;
+    color: #fff;
     background-color: rgba(0,0,0,0.5);
-    color: white;
     border: 0;
     border-radius: 2px;
     transition: background-color 0.3s;
 }
 #search-box:focus {
     background-color: rgba(0,0,0,0.7);
-    border: 1px solid royalblue;
+    border: 1px solid var(--myBlue);
 }
 #search-icon {
     position: absolute;
     top: 10px;
     left: 10px;
-    color: white;
+    color: #fff;
 }
 #loading-icon {
     position: absolute;
@@ -104,8 +111,8 @@ body {
     top: 5px;
     height: 30px;
     font-size: 16px;
+    color: #fff;
     background-color: transparent;
-    color: white;
     border: 0;
 }
 #location-btn:hover {
@@ -113,8 +120,10 @@ body {
     cursor: pointer;
 }
 #location-btn:active {
-    color: white;
+    color: #fff;
 }
+
+/*search results list*/
 #search-resultbox {
     position: absolute;
     z-index: 999;
@@ -126,7 +135,7 @@ body {
     font-family: 'Tajawal', Tahoma, Arial;;
     font-weight: 500;
     font-size: 12pt;
-    color: white;
+    color: #fff;
     background-color: #222;
     list-style: none;
     border-radius: 2px;
@@ -145,7 +154,7 @@ body {
     text-overflow: ellipsis;
 }
 #search-resultbox > li:hover {
-    background-color: rgb(55, 90, 197);
+    background-color: var(--myBlue);
     cursor: pointer;
 }
 
@@ -154,10 +163,10 @@ body {
     position: relative;
     width: 100%;
     padding: 15px 15px;
-    background-color: #444;    
+    background-color: var(--secondColor);    
 }
 #current-location-info {
-    color: white;
+    color: #fff;
     font-family: 'Tajawal', Tahoma, Arial;
     font-size: 14pt;
     line-height: 10pt;
@@ -173,15 +182,13 @@ body {
 #temp-unit-container {
     position: absolute;
     top: 50%;
-    transform: translate(0, -50%);
     right: 15px;
+    transform: translate(0, -50%);
     padding: 1px 8px;
     font-size: 14pt;
     font-family: 'Segoe UI', Tahoma, Verdana;
-    background-color: white;
+    background-color: #fff;
     border-radius: 2px;
-}
-#temp-unit-container {
     cursor: pointer;
 }
 #toggle-thumb {
@@ -189,7 +196,7 @@ body {
     left: 4px;
     width: 23px;
     height: 23px;
-    background-color: royalblue;
+    background-color: var(--myBlue);
     border-radius: 2px;
     transition: transform 0.3s;
     transform: translate(0, 1px);
@@ -205,26 +212,26 @@ body {
 #navbar {
     width: 100%;
     height: 50px;
-    background-color: #444;
+    background-color: var(--secondColor);
     text-align: center;
 }
 #navbar > button {
     position: relative;
     top: 50%;
     transform: translate(0, -50%);
-    margin: 0px 3%;
     height: 45px;
+    margin: 0px 3%;
     padding: 0 10px;
     font-family: 'Tajawal', 'Segoe UI', Tahoma, Verdana;
     font-weight: 500;
     font-size: 15pt;
-    color: white;
+    color: #fff;
     background-color: transparent;
     border: 0;
 }
 #navbar > button:hover {
     background-color: rgba(0,0,0,0.2);
-    border-bottom: 4px royalblue solid;
+    border-bottom: 4px var(--myBlue) solid;
     cursor: pointer;
 }
 #navbar .current-nav {
@@ -244,10 +251,10 @@ body {
     width: 100%;
     height: 110px;
     font-family: Tahoma, Arial;
-    color: #ccc;
-    text-shadow: 2px 2px #000;
     font-size: 24pt;
     font-weight: 500;
+    color: #ccc;
+    text-shadow: 2px 2px #000;
     background: url(pics/thunder_night.jpg);
     background-size: cover;
     box-shadow: 0 2px 6px #222;
@@ -267,10 +274,9 @@ body {
     position: absolute;
     top: 35px;
     left: 10px;
-    font-size: 54px;
     width: 70px;
     height: 70px;
-    background-image: url(icons/weather-1.1s-344px.svg);
+    font-size: 54px;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -288,21 +294,21 @@ body {
     font-size: 18pt;
 }
 #today-details {
-    display: grid;
     width: 100%;
+    display: grid;
     gap: 10px 20px;
     grid-template-columns: 90%;
+    padding: 20px 20px;
     justify-content: center;
     font-family: 'Barlow Condensed', Tahoma, Arial;
     font-size: 16pt;
     font-weight: 700;
-    padding: 20px 20px;
 }
 #today-details > div {
     position: relative;
     height: 35px;
     padding: 5px 0 0 10px;
-    border-left: 5px solid royalblue;
+    border-left: 5px solid var(--myBlue);
 }
 .detail-value {
     position: absolute;
@@ -360,7 +366,7 @@ body {
     right: 15px;
     top: 10px;
     font-size: 12pt;
-    color: royalblue;
+    color: var(--myBlue);
     transition: transform 0.2s;
 }
 .forecast-element-detail {
@@ -369,10 +375,10 @@ body {
     height: 0px;
     top: 10px;
     display: grid;
-    font-size: 16pt;
     grid-template-columns: 45% 45%;
     gap: 0px 0px;
     justify-content: space-evenly;
+    font-size: 16pt;
     background-color: #fff;
     border-top: #aaa solid 1px;
     overflow: hidden;
@@ -385,7 +391,7 @@ body {
     border-bottom: #aaa solid 1px;
 }
 .detail-icon {
-    color: royalblue;
+    color: var(--myBlue);
 }
 
 /*Daily section styling*/
@@ -395,13 +401,8 @@ body {
     overflow-y: auto;
     display: none; 
 }
-.day-night-head {
-    text-align: center;
-    font-size: 14pt;
-    color: #000;
-    margin-bottom: 10px;
-    border: 0;
-}
+
+/*Responsive adjustements*/
 @media only screen and (min-width: 600px) {
     #main-container {width: 56%;}
     #search-box {width: 98%;}
