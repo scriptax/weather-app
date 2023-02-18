@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap');
 * {
     box-sizing: border-box;
 }
@@ -13,6 +13,15 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';
+}
+
+#api-credit {
+    font-size: 10pt;
+    position: absolute;
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, 0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*Custom scrollbar*/
@@ -34,7 +43,7 @@ body {
 #main-container {
     position: absolute;
     width: 99%;
-    height: 95%;
+    height: 94%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
@@ -57,7 +66,7 @@ body {
     height: 60px;
 }
 #search-box {
-    width: 100%;
+    width: 98%;
     height: 35px;
     outline: 0;
     padding-left: 35px;
@@ -114,7 +123,7 @@ body {
     transform: translate(-50%, 0);
     width: 100%;
     padding: 0;
-    font-family: 'Dosis', Tahoma, Arial;;
+    font-family: 'Tajawal', Tahoma, Arial;;
     font-weight: 500;
     font-size: 12pt;
     color: white;
@@ -149,8 +158,8 @@ body {
 }
 #current-location-info {
     color: white;
-    font-family: 'Dosis', Tahoma, Arial;
-    font-size: 16pt;
+    font-family: 'Tajawal', Tahoma, Arial;
+    font-size: 14pt;
     line-height: 10pt;
 }
 
@@ -178,12 +187,12 @@ body {
 #toggle-thumb {
     position: absolute;
     left: 4px;
-    top: 2px;
     width: 23px;
     height: 23px;
     background-color: royalblue;
     border-radius: 2px;
     transition: transform 0.3s;
+    transform: translate(0, 1px);
 }
 #temp-unit-toggle {
     z-index: 999;
@@ -205,8 +214,8 @@ body {
     transform: translate(0, -50%);
     margin: 0px 3%;
     height: 45px;
-    padding: 0 20px;
-    font-family: 'Dosis', 'Segoe UI', Tahoma, Verdana;
+    padding: 0 10px;
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, Verdana;
     font-weight: 500;
     font-size: 15pt;
     color: white;
@@ -259,12 +268,17 @@ body {
     top: 35px;
     left: 10px;
     font-size: 54px;
+    width: 70px;
+    height: 70px;
+    background-image: url(icons/weather-1.1s-344px.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 #today-weather-status {
     position: absolute;
     top: 40px;
-    left: 70px;
-    font-family: 'Dosis', Tahoma, Arial;
+    left: 80px;
+    font-family: 'Tajawal', Tahoma, Arial;
     font-weight: 700;
     font-size: 34pt;
     line-height: 28px;
@@ -282,7 +296,7 @@ body {
     font-family: 'Barlow Condensed', Tahoma, Arial;
     font-size: 16pt;
     font-weight: 700;
-    padding: 40px 10px;
+    padding: 20px 20px;
 }
 #today-details > div {
     position: relative;
@@ -299,7 +313,7 @@ body {
 /*Hourly section styling*/
 #hourly-container {
     width: 100%;
-    height: 77%;
+    height: 70%;
     overflow-y: auto;
     display: none;
 }
@@ -322,9 +336,13 @@ body {
 }
 .forecast-element-icon {
     position: relative;
+    display: inline-block;
     left: 110px;
-    top: 5px;
-    color: #777;
+    top: 10px;
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .forecast-element-temp {
     position: relative;
@@ -353,7 +371,7 @@ body {
     display: grid;
     font-size: 16pt;
     grid-template-columns: 45% 45%;
-    gap: 0px 20px;
+    gap: 0px 0px;
     justify-content: space-evenly;
     background-color: #fff;
     border-top: #aaa solid 1px;
@@ -375,7 +393,7 @@ body {
     width: 100%;
     height: 78%;
     overflow-y: auto;
-    display: block; 
+    display: none; 
 }
 .day-night-head {
     text-align: center;
@@ -386,7 +404,7 @@ body {
 }
 @media only screen and (min-width: 600px) {
     #main-container {width: 56%;}
-    #search-box {width: 100%;}
+    #search-box {width: 98%;}
     #search-box-container {width: 60%}
     #today-details {grid-template-columns: 45% 45%;}
     #search-resultbox {width: 59%}
