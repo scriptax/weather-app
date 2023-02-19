@@ -8,11 +8,12 @@
 }
 * {
     box-sizing: border-box;
-}
-body {
     padding: 0;
     margin: 0;
     border: 0;
+    outline: 0;
+}
+body {
     height: 100%;
     background: linear-gradient(220deg, rgb(231, 132, 114) 4%, rgb(76, 124, 214) 100%);
     background-repeat: no-repeat;
@@ -82,7 +83,6 @@ body {
     color: #fff;
     background-color: rgba(0,0,0,0.5);
     border: 0;
-    border-radius: 2px;
     transition: background-color 0.3s;
 }
 #search-box:focus {
@@ -128,7 +128,7 @@ body {
     position: absolute;
     z-index: 999;
     left: 50%;
-    top: 45px;
+    top: 60px;
     transform: translate(-50%, 0);
     width: 100%;
     padding: 0;
@@ -188,7 +188,6 @@ body {
     font-size: 14pt;
     font-family: 'Segoe UI', Tahoma, Verdana;
     background-color: #fff;
-    border-radius: 2px;
     cursor: pointer;
 }
 #toggle-thumb {
@@ -197,7 +196,6 @@ body {
     width: 23px;
     height: 23px;
     background-color: var(--myBlue);
-    border-radius: 2px;
     transition: transform 0.3s;
     transform: translate(0, 1px);
 }
@@ -205,7 +203,7 @@ body {
     z-index: 999;
 }
 #temp-unit-checkbox:checked + #temp-unit-container > #toggle-thumb {
-    transform: translate(25px, 0);
+    transform: translate(25px, 1px);
 }
 
 /*Weather forecast timespan navbar*/
@@ -228,6 +226,7 @@ body {
     color: #fff;
     background-color: transparent;
     border: 0;
+    transition: background-color 0.2s;
 }
 #navbar > button:hover {
     background-color: rgba(0,0,0,0.2);
@@ -241,10 +240,10 @@ body {
 /*Today section styling*/
 #today-weather-container {
     width: 100%;
-    height: 75%;
+    height: 77%;
     overflow-y: auto;
     display: none;
-    transition-duration: 0.4s;
+    transition: opacity 0.3s;
 }
 #today-weather-summary {
     position: relative;
@@ -262,11 +261,11 @@ body {
 #today-location-details {
     display: block;
     width: 100%;
-    height: 35px;
+    height: 30px;
     padding: 0 10px;
     font-family: 'Barlow Condensed', Tahoma, Arial;;
     font-size: 16pt;
-    line-height: 24pt;
+    line-height: 20pt;
     color: #fff;
     background-color: rgba(0,0,0,0.5);
 }
@@ -282,8 +281,8 @@ body {
 }
 #today-weather-status {
     position: absolute;
-    top: 40px;
-    left: 80px;
+    top: 48px;
+    left: 85px;
     font-family: 'Tajawal', Tahoma, Arial;
     font-weight: 700;
     font-size: 34pt;
@@ -322,6 +321,7 @@ body {
     height: 70%;
     overflow-y: auto;
     display: none;
+    transition: opacity 0.3s;
 }
 .forecast-element {
     position: relative;
@@ -330,7 +330,7 @@ body {
     font-family: 'Barlow Condensed', Tahoma, Arial;
     font-size: 16pt;
     border-top: #aaa solid 1px;
-    transition: height 0.2s;
+    transition: height 0.2s, background-color 0.3s;
 }
 .forecast-element:hover {
     cursor: pointer;
@@ -344,9 +344,9 @@ body {
     position: relative;
     display: inline-block;
     left: 110px;
-    top: 10px;
-    width: 25px;
-    height: 25px;
+    top: 8px;
+    width: 24px;
+    height: 24px;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -389,6 +389,7 @@ body {
     height: 35px;
     padding: 5px 0 0 5px;
     border-bottom: #aaa solid 1px;
+    font-size: 14pt;
 }
 .detail-icon {
     color: var(--myBlue);
@@ -400,12 +401,13 @@ body {
     height: 78%;
     overflow-y: auto;
     display: none; 
+    transition: opacity 0.3s;
 }
 
 /*Responsive adjustements*/
 @media only screen and (min-width: 600px) {
     #main-container {width: 56%;}
-    #search-box {width: 98%;}
+    #search-box {width: 100%;}
     #search-box-container {width: 60%}
     #today-details {grid-template-columns: 45% 45%;}
     #search-resultbox {width: 59%}

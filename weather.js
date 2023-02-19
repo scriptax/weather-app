@@ -1,15 +1,11 @@
+// get user input search term (city name), look for matches and list matches
 let locationListHandler = (function () {
     let timer = 0;
     async function getGeoData(city) {
         let queryString = `https://geocoding-api.open-meteo.com/v1/search?name=${city}`;
-        try {
-            let obj = await fetch(queryString);
-            let data = await obj.text();
-            return await [JSON.parse(data), obj.ok];
-        }
-        catch(e) {
-            alert("Check your internet connection and try again")
-        }
+        let obj = await fetch(queryString);
+        let data = await obj.text();
+        return await [JSON.parse(data), obj.ok];
     }
 
     function clearList() {
@@ -32,25 +28,24 @@ let locationListHandler = (function () {
             res => {
             clearList();
             document.getElementById('loading-icon').style.display = "none";
+
             if(!res.hasOwnProperty("results")) {
                 document.getElementById('search-resultbox').innerHTML = 
                 "<li>No results found</li>";
                 return undefined;
             }
+
             let instance = weatherResults.getInstance();
             let items = Math.min(res.results.length, 5);
             for(let i = 0; i < items; i++) {
-                cityName = res.results[i].name;
-                province = res.results[i].admin1;
-                countryName = res.results[i].country;
                 let location = `${res.results[i].name}, ${res.results[i].admin1}, ${res.results[i].country}`;
 
                 let child = document.createElement('LI');
                 child.innerHTML = location;
+                document.getElementById('search-resultbox').appendChild(child);
 
                 let tempUnit = document.getElementById('temp-unit-checkbox').checked ? "fahrenheit" : "celsius";
 
-                document.getElementById('search-resultbox').appendChild(child);
                 child.addEventListener('click', () => {
                     let locData = {
                         latitude: res.results[i].latitude,
@@ -73,6 +68,7 @@ let locationListHandler = (function () {
     return {
         invokeSearch: function(searchTerm) {
             clearTimeout(timer);
+            // delay location request function to prevent multiple queries while typing
             timer = setTimeout(() => {
                 listMaker(searchTerm);
             }, 1000);
@@ -95,9 +91,9 @@ window.addEventListener('click', () => {
     document.getElementById('search-resultbox').style.display = "none";
 });
 
+// request and get weather and air quality data and display the results
 let weatherResults = (function () {
     let instance;
-
     function init() {
         async function getData(params) {
             let weatherQueryString = "https://api.open-meteo.com/v1/forecast?" +
@@ -112,6 +108,7 @@ let weatherResults = (function () {
             let aqiQueryString = "https://air-quality-api.open-meteo.com/v1/air-quality?" +
             `latitude=${params.latitude}&longitude=${params.longitude}&hourly=uv_index,us_aqi` + 
             `&start_date=${params.startDate}&end_date=${params.startDate}`;
+
             let weatherObj = await fetch(weatherQueryString);
             let aqiObj = await fetch(aqiQueryString);
             let weatherData = await weatherObj.text();
@@ -123,6 +120,7 @@ let weatherResults = (function () {
             };
         }
 
+        // clear current forecast elements
         function clearItems() {
             let parents = [
                 document.getElementById('today-details'),
@@ -139,6 +137,7 @@ let weatherResults = (function () {
             });
         }
 
+        // show today weather status
         function todayWeather(res, date) {
             let code = res.weather.current_weather.weathercode;
             let isDay;
@@ -193,6 +192,7 @@ let weatherResults = (function () {
             }
         }
 
+        // show hourly weather forecast
         function hourlyWeather(res, date) {
             let spanStart = date.getHours();
             let spanEnd = 23;
@@ -204,7 +204,7 @@ let weatherResults = (function () {
             const detailIcons = ["wind", "moisture", "clouds",
             "droplet-half", "lungs", "brightness-low"];
 
-            //forecast item preview data
+            //forecast item preview
             for(let i = spanStart; i <= spanEnd; i++) {
                 let forecastDate = new Date(hourlyData.time[i]);
                 let time =  forecastDate.toLocaleTimeString([], {hour: '2-digit'});
@@ -231,7 +231,7 @@ let weatherResults = (function () {
                 document.querySelectorAll(".hourly-icon")[i - spanStart].style.backgroundImage = 
                 `url(icons/${weatherState[1]}.svg)`;
 
-                //forecast item detailed data
+                //forecast item details
                 let detailValues = [
                     `${hourlyData.windspeed_80m[i]} km/h`,
                     `${hourlyData.relativehumidity_2m[i]}%`,
@@ -252,6 +252,8 @@ let weatherResults = (function () {
     
                     detailsParent.appendChild(child);
                 }
+
+                // open-close details
                 parent.addEventListener('click', (function() {
                     let close = true;
                     let arrow = document.querySelectorAll(".hourly-arrow")[i - spanStart];
@@ -271,9 +273,9 @@ let weatherResults = (function () {
                     }
                 })());
             }
-            grandPa.style.display = "block";
         }
 
+        // show daily forecast
         function dailyWeather(res) {
             let grandPa = document.getElementById('daily-container');
             let dailyData = res.weather.daily;
@@ -304,15 +306,13 @@ let weatherResults = (function () {
                 document.querySelectorAll(".daily-icon")[i].style.backgroundImage = 
                 `url(icons/${weatherState[1]}.svg)`;
 
-                let sunrise = (new Date(dailyData.sunrise[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                let sunset = (new Date(dailyData.sunset[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 let detailValues = [
                     `${dailyData.windspeed_10m_max[i]} km/h`,
                     `${dailyData.uv_index_max[i]}`,
                     `${dailyData.precipitation_sum[i]} mm`,
                     `${dailyData.precipitation_hours[i]}`,
-                    sunrise,
-                    sunset,
+                    (new Date(dailyData.sunrise[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                    (new Date(dailyData.sunset[i])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
                 ];
 
                 let detailsParent = document.querySelectorAll(".daily-detail")[i];
@@ -327,6 +327,7 @@ let weatherResults = (function () {
                     detailsParent.appendChild(child);
                 }
 
+                // open-close details
                 parent.addEventListener('click', (function() {
                     let close = true;
                     let arrow = document.querySelectorAll(".daily-arrow")[i];
@@ -346,9 +347,9 @@ let weatherResults = (function () {
                     }
                 })());
             }
-            grandPa.style.display = "block";
         }
 
+        // handle active nav and section displaying
         function activeNav(tab, page) {
             let tabs = document.getElementById('navbar').childNodes;
             let pages = document.querySelectorAll('.navpage');
@@ -360,21 +361,25 @@ let weatherResults = (function () {
 
             pages.forEach(elem => {
                 elem.style.display = "none";
+                elem.style.opacity = "0";
             });
             pages[page].style.display = "block";
+            setTimeout(() => {pages[page].style.opacity = "1";}, 1);
         }
 
         return {
+            // initializing location data for requesting weather data
             initiateWeatherDemo: function (locationData) {
+                document.getElementById('loading-icon').style.display = "block";
+
                 localStorage.setItem('weatherLatestLocData', JSON.stringify(locationData));
 
-                document.getElementById('loading-icon').style.display = "block";
                 document.getElementById('current-location-info').innerHTML = 
                 `${locationData.city}, ${locationData.province || ""}, ${locationData.country || ""}`;
             
                 let date  = new Date(new Date().toLocaleString("en-US", 
-                {timeZone: locationData.locationTimeZone}));
-                let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 7);
+                {timeZone: locationData.locationTimeZone})); // current date at the location
+                let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 7); // forecast end date
                 let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 
                 document.getElementById('today-location-details').innerHTML = 
@@ -385,6 +390,7 @@ let weatherResults = (function () {
                 let queryParams = locationData;
                 queryParams.startDate = startDate;
                 queryParams.endDate = endDate;
+                
                 let promise = new Promise ((resolve, reject) => {
                     getData(queryParams)
                     .then(res => {
