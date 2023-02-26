@@ -10,7 +10,7 @@ const autoLocateHandler = (function() {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
                 city: result.features[0].properties.city,
-                province: result.features[0].properties.state | result.features[0].properties.province,
+                province: result.features[0].properties.province || result.features[0].properties.state,
                 country: result.features[0].properties.country,
                 locationTimeZone: result.features[0].properties.timezone.name,
                 tempUnit: tempUnit
