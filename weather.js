@@ -1,3 +1,49 @@
+const autoLocateHandler = (function() {
+    function sendPosition(position) {
+        let queryString = `https://api.geoapify.com/v1/geocode/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&apiKey=3706087c4a864c66a6651839d0f78d9e`;
+        fetch(queryString, {method: 'GET'})
+        .then(response => response.json())
+        .then(result => {
+            let instance = weatherResults.getInstance();
+            let tempUnit = document.getElementById('temp-unit-checkbox').checked ? "fahrenheit" : "celsius";
+            let locData = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                city: result.features[0].properties.city,
+                province: result.features[0].properties.state | result.features[0].properties.province,
+                country: result.features[0].properties.country,
+                locationTimeZone: result.features[0].properties.timezone.name,
+                tempUnit: tempUnit
+            }
+            instance.initiateWeatherDemo(locData);
+        })
+        .catch(error => console.log('error', error));
+    }
+    function showError(err) {
+        switch(err.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+    return function () {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(sendPosition, showError);
+        } else {
+            alert("This browser does not support autolocation. Use search bar instead");
+        }
+    }
+})();
+
 // get user input search term (city name), look for matches and list matches
 let locationListHandler = (function () {
     let timer = 0;
@@ -86,6 +132,10 @@ document.getElementById('search-box').addEventListener('keyup', () => {
         document.getElementById('search-resultbox').style.display = "block";
         locationListHandler.invokeSearch(searchTerm);
     }
+});
+
+document.getElementById('location-btn').addEventListener('click', () => {
+    autoLocateHandler();
 });
 window.addEventListener('click', () => {
     document.getElementById('search-resultbox').style.display = "none";
