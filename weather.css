@@ -414,7 +414,6 @@ body {
     #today-details {grid-template-columns: 45% 45%;}
     #search-resultbox {width: 59%}
     #current-location-info {font-size: 14pt;}
-
 }
 @media only screen and (min-width: 992px) {
     #main-container {width: 40%;}
@@ -423,6 +422,4 @@ body {
     #today-details {grid-template-columns: 45% 45%;}
     #search-resultbox {width: 59%}
     #current-location-info {font-size: 14pt;}
-
 }
-/*    #today-weather-status {top: 48px}*/
