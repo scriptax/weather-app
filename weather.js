@@ -451,6 +451,7 @@ let weatherResults = (function () {
                 });
                 promise.then((res) => {
                     document.getElementById('loading-icon').style.display = "none";
+                    document.getElementById('empty-message').style.display = 'none';
                     activeNav(1, 0);
                     clearItems();
                     todayWeather(res, date);

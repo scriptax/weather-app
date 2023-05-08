@@ -15,7 +15,7 @@
                 <i id="search-icon" class="bi bi-search"></i>
                 <input id="search-box" type="text" placeholder="Search For Location">
                 <i id="loading-icon"></i>
-                <button id="location-btn">
+                <button id="location-btn" title="Your Location">
                     <i class="bi bi-geo-alt-fill"></i>
                 </button>
             </div>
@@ -24,7 +24,7 @@
         <div id="topbar">
             <span id="current-location-info">Choose Your Location...</span>
             <input id="temp-unit-checkbox" type="checkbox">
-            <label id="temp-unit-container" for="temp-unit-checkbox">
+            <label id="temp-unit-container" for="temp-unit-checkbox" title="Temprature Unit">
                 <span id="temp-unit-toggle">
                     &#176C &#176F
                 </span>
@@ -54,6 +54,12 @@
         </div>
         <!--Daily Page-->
         <div id="daily-container" class="navpage">
+        </div>
+        <div id="empty-message">
+            <h2>
+                What's the weather like?<br>
+                Let's find out!
+            </h2>
         </div>
     </div>
     <script src="weather.js"></script>

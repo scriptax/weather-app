@@ -59,6 +59,17 @@ body {
     overflow-y: hidden;
 }
 
+#empty-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50%);
+    width: 100%;
+    text-align: center;
+    color: #555;
+    font-family: 'Tajawal';
+}
+
 /*search bar style and position*/
 #search-bar {
     padding: 20px 0;
@@ -91,7 +102,7 @@ body {
 }
 #search-icon {
     position: absolute;
-    top: 10px;
+    top: 9px;
     left: 10px;
     color: #fff;
 }
@@ -107,8 +118,8 @@ body {
 }
 #location-btn {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 8px;
+    top: 3px;
     height: 30px;
     font-size: 16px;
     color: #fff;
@@ -117,7 +128,6 @@ body {
 }
 #location-btn:hover {
     color: #bbb;
-    cursor: pointer;
 }
 #location-btn:active {
     color: #fff;
@@ -136,7 +146,7 @@ body {
     font-weight: 500;
     font-size: 12pt;
     color: #fff;
-    background-color: #222;
+    background-color: var(--secondColor);
     list-style: none;
     border-radius: 2px;
     box-shadow: 0px 0px 5px #aaa;
@@ -226,8 +236,8 @@ body {
     font-size: 15pt;
     color: #fff;
     background-color: transparent;
-    border: 0;
-    transition: background-color 0.2s;
+    border-bottom: 4px transparent solid;
+    transition: background-color 0.2s, border 0.2s;
 }
 #navbar > button:hover {
     background-color: rgba(0,0,0,0.2);
@@ -245,6 +255,7 @@ body {
     overflow-y: auto;
     display: none;
     transition: opacity 0.3s;
+    cursor: default;
 }
 #today-weather-summary {
     position: relative;
