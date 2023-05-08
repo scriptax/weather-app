@@ -333,7 +333,7 @@ let weatherResults = (function () {
             const detailTitles = ["Wind", "UV Index", "Percipation", "Percipation Hours", "Sunrise", "Sunset"];
             const detailIcons = ["wind", "brightness-low", "droplet-half", "clock-history", "sunrise", "sunset"];
 
-            for(let i = 0; i < 7; i++) {
+            for(let i = 0; i < 10; i++) {
                 let parent = document.createElement('DIV');
                 let options = {day:"numeric", month:"short", weekday:"short"};
                 let forecastDate = new Date(dailyData.time[i]);
@@ -429,7 +429,7 @@ let weatherResults = (function () {
             
                 let date  = new Date(new Date().toLocaleString("en-US", 
                 {timeZone: locationData.locationTimeZone})); // current date at the location
-                let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 7); // forecast end date
+                let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 10); // forecast end date
                 let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 
                 document.getElementById('today-location-details').innerHTML = 
@@ -459,12 +459,12 @@ let weatherResults = (function () {
                         {activeNav(1, 0);};
                     });
 
-                    document.getElementById('navbar').childNodes[3].addEventListener('click', (function(){
+                    document.getElementById('navbar').childNodes[3].addEventListener('click', (function() {
                         hourlyWeather(res, date);
                         return function() {activeNav(3, 1);}
                     })());
 
-                    document.getElementById('navbar').childNodes[5].addEventListener('click', (function(){
+                    document.getElementById('navbar').childNodes[5].addEventListener('click', (function() {
                         dailyWeather(res);
                         return function() {activeNav(5, 2);}
                     })());
@@ -484,7 +484,6 @@ let weatherResults = (function () {
 })();
 
 function weatherStatusDemo(code, isDay) {
-
     const weatherCodes = {
         "0": ["Clear", isDay?"sun-fill":"moon-stars-fill", isDay?"clear_day":"clear_night"],
         "1": ["Mainly clear", isDay?"sun-fill":"moon-stars-fill", isDay?"mainly_clear_day":"partly_cloudy_night"],
@@ -532,6 +531,5 @@ document.getElementById('temp-unit-container').addEventListener('click', () => {
     let unit = document.getElementById('temp-unit-checkbox').checked ? "celsius" : "fahrenheit";
     let locData = JSON.parse(localStorage.getItem('weatherLatestLocData'));
     locData.tempUnit = unit;
-
     instance.initiateWeatherDemo(locData);
 });
