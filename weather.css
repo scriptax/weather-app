@@ -125,6 +125,7 @@ body {
     color: #fff;
     background-color: transparent;
     border: 0;
+    cursor: pointer;
 }
 #location-btn:hover {
     color: #bbb;
