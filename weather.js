@@ -412,9 +412,13 @@ let weatherResults = (function () {
             pages.forEach(elem => {
                 elem.style.display = "none";
                 elem.style.opacity = "0";
+                elem.style.transform = "translate(0, 20vh)";
             });
             pages[page].style.display = "block";
-            setTimeout(() => {pages[page].style.opacity = "1";}, 1);
+            setTimeout(() => {
+                pages[page].style.opacity = "1";
+                pages[page].style.transform = "translate(0, 0)";
+            }, 1);
         }
 
         return {
