@@ -15,9 +15,9 @@
 }
 body {
     height: 100%;
-    background: url(./pics/bg.svg);
+    background: linear-gradient(135deg, rgba(255,134,0,1) 8%, rgba(255,201,0,1) 18%, rgba(0,149,255,1) 85%, rgba(0,114,255,1) 100%);
     background-repeat: no-repeat;
-    background-position-x: center;
+    background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';
 }
 
