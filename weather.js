@@ -84,7 +84,7 @@ let locationListHandler = (function () {
             let instance = weatherResults.getInstance();
             let items = Math.min(res.results.length, 5);
             for(let i = 0; i < items; i++) {
-                let location = `${res.results[i].name}, ${res.results[i].admin1}, ${res.results[i].country}`;
+                let location = `${res.results[i].name}${res.results[i].admin1 ? ", " + res.results[i].admin1 : ""}${res.results[i].country ? ", " + res.results[i].country : ""}`;
 
                 let child = document.createElement('LI');
                 child.innerHTML = location;
@@ -429,7 +429,7 @@ let weatherResults = (function () {
                 localStorage.setItem('weatherLatestLocData', JSON.stringify(locationData));
 
                 document.getElementById('current-location-info').innerHTML = 
-                `${locationData.city}, ${locationData.province || ""}, ${locationData.country || ""}`;
+                `${locationData.city}${locationData.province ? ", " + locationData.province : ""}${locationData.country ? ", " + locationData.country : ""}`;
             
                 let date  = new Date(new Date().toLocaleString("en-US", 
                 {timeZone: locationData.locationTimeZone})); // current date at the location
