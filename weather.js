@@ -93,6 +93,7 @@ let locationListHandler = (function () {
                 let tempUnit = document.getElementById('temp-unit-checkbox').checked ? "fahrenheit" : "celsius";
 
                 child.addEventListener('click', () => {
+                    document.getElementById('search-box').value = "";
                     let locData = {
                         latitude: res.results[i].latitude,
                         longitude: res.results[i].longitude,
