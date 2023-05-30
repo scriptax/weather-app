@@ -1,80 +1,83 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Weather App</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="icons/favicon.ico" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="Weather app with daily and hourly forecasts, and air quality indices" />
-        <link rel="apple-touch-icon" href="icons/logo192.png" />
-        <link rel="manifest" href="manifest.json" />
-        <link rel="stylesheet" href="weather.css">
-    </head>
-    <body>
-    <span id="api-credit">API by <a href="https://open-meteo.com" target="_blank">Open-Meteo</a></span>
-    <div id="main-container">
-        <div id="search-bar">
-            <div id="search-box-container">
-                <i id="search-icon" class="bi bi-search"></i>
-                <input id="search-box" type="text" placeholder="Search For Location">
-                <i id="loading-icon"></i>
-                <button id="location-btn" title="Your Location">
-                    <i class="bi bi-geo-alt-fill"></i>
-                </button>
-            </div>
-            <div>
-                <input id="temp-unit-checkbox" type="checkbox">
-                <label id="temp-unit-container" for="temp-unit-checkbox" title="Temprature Unit">
-                    <span id="temp-unit-toggle">
-                        &#176C &#176F
-                    </span>
-                    <span id="toggle-thumb"></span>
-                </label>
-            </div>
-            <ul id="search-resultbox"></ul>
-        </div>
-        <div id="topbar">
-            <div>
-                <i class="bi bi-pin-map"></i>
-                <span id="current-location-info">Choose Your Location...</span>
-            </div>
-            <div>
-                <i class="bi bi-calendar2-week"></i>
-                <span id="current-date"></span>
-            </div>
-        </div>
-        <div id="navbar">
-            <button>TODAY</button>
-            <button>HOURLY</button>
-            <button>DAILY</button>
-        </div>
-        <!--Today Page-->
-        <div id="today-weather-container" class="navpage">
-            <div id="today-weather-summary">
-                <span id="today-location-details"></span>
-                <i id="today-weather-icon"></i>
-                <span id="today-weather-status">
-                    <span id="today-temp"></span><br>
-                    <span id="today-sky-status"></span>
-                </span>
-            </div>
-            <div id="today-details">
-            </div>
-        </div>
-        <!--Hourly Page-->
-        <div id="hourly-container" class="navpage">
-        </div>
-        <!--Daily Page-->
-        <div id="daily-container" class="navpage">
-        </div>
-        <div id="empty-message">
-            <h2>
-                What's the weather like?<br>
-                Let's find out!
-            </h2>
-        </div>
+<head>
+  <title>Weather App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Weather app with daily and hourly forecasts, and air quality indices" />
+  <link rel="icon" href="icons/favicon.ico" />
+  <link rel="apple-touch-icon" href="icons/logo192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="weather.css">
+  <script src="weather.js" defer></script>
+</head>
+<body>
+  <div id="main-container">
+    <div id="search-bar">
+      <div id="search-box-container">
+        <i id="search-icon" class="bi bi-search"></i>
+        <input id="search-box" type="text" placeholder="Search For Location">
+        <i id="loading-icon"></i>
+        <button id="location-btn" title="Your Location">
+          <i class="bi bi-geo-alt-fill"></i>
+        </button>
+      </div>
+      <div>
+        <input id="temp-unit-checkbox" type="checkbox">
+        <label id="temp-unit-container" for="temp-unit-checkbox" title="Temprature Unit">
+          <span id="temp-unit-toggle">
+            &#176C &#176F
+          </span>
+          <span id="toggle-thumb"></span>
+        </label>
+      </div>
+      <ul id="search-resultbox"></ul>
     </div>
-    <script src="weather.js"></script>
-    </body>
+      <div id="topbar">
+        <div>
+          <i class="bi bi-pin-map"></i>
+          <span id="current-location-info">Choose Your Location...</span>
+        </div>
+        <div>
+          <i class="bi bi-calendar2-week"></i>
+          <span id="current-date"></span>
+        </div>
+      </div>
+      <div id="navbar">
+        <button>TODAY</button>
+        <button>HOURLY</button>
+        <button>DAILY</button>
+      </div>
+      <!--Today Page-->
+      <div id="today-weather-container" class="navpage">
+        <div id="today-weather-summary">
+          <span id="today-location-details"></span>
+          <i id="today-weather-icon"></i>
+          <span id="today-weather-status">
+              <span id="today-temp"></span><br>
+              <span id="today-sky-status"></span>
+          </span>
+        </div>
+        <div id="today-details">
+        </div>
+      </div>
+      <!--Hourly Page-->
+      <div id="hourly-container" class="navpage">
+      </div>
+      <!--Daily Page-->
+      <div id="daily-container" class="navpage">
+      </div>
+      <div id="empty-message">
+        <h2>
+            What's the weather like?<br>
+            Let's find out!
+        </h2>
+      </div>
+  </div>
+  <footer>
+    <span>© 2023 By <a href="https://github.com/scriptax" target="_blank">scriptax</a></span>
+    <span>API by <a href="https://open-meteo.com" target="_blank">Open-Meteo</a></span>
+  </footer>
+</body>
 </html>
