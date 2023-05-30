@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
+        <title>Weather App</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Weather App</title>
-        <link rel="icon" href="icons/app_icon.png" type="image/x-icon"/>
+        <link rel="icon" href="icons/favicon.ico" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Weather app with daily and hourly forecasts, and air quality indices" />
+        <link rel="apple-touch-icon" href="icons/logo192.png" />
+        <link rel="manifest" href="manifest.json" />
         <link rel="stylesheet" href="weather.css">
     </head>
     <body>
@@ -19,17 +23,26 @@
                     <i class="bi bi-geo-alt-fill"></i>
                 </button>
             </div>
+            <div>
+                <input id="temp-unit-checkbox" type="checkbox">
+                <label id="temp-unit-container" for="temp-unit-checkbox" title="Temprature Unit">
+                    <span id="temp-unit-toggle">
+                        &#176C &#176F
+                    </span>
+                    <span id="toggle-thumb"></span>
+                </label>
+            </div>
             <ul id="search-resultbox"></ul>
         </div>
         <div id="topbar">
-            <span id="current-location-info">Choose Your Location...</span>
-            <input id="temp-unit-checkbox" type="checkbox">
-            <label id="temp-unit-container" for="temp-unit-checkbox" title="Temprature Unit">
-                <span id="temp-unit-toggle">
-                    &#176C &#176F
-                </span>
-                <span id="toggle-thumb"></span>
-            </label>
+            <div>
+                <i class="bi bi-pin-map"></i>
+                <span id="current-location-info">Choose Your Location...</span>
+            </div>
+            <div>
+                <i class="bi bi-calendar2-week"></i>
+                <span id="current-date"></span>
+            </div>
         </div>
         <div id="navbar">
             <button>TODAY</button>

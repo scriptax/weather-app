@@ -425,6 +425,9 @@ let weatherResults = (function () {
         return {
             // initializing location data for requesting weather data
             initiateWeatherDemo: function (locationData) {
+                const days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'];
+                let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
                 document.getElementById('loading-icon').style.display = "block";
 
                 localStorage.setItem('weatherLatestLocData', JSON.stringify(locationData));
@@ -432,11 +435,16 @@ let weatherResults = (function () {
                 document.getElementById('current-location-info').innerHTML = 
                 `${locationData.city}${locationData.province ? ", " + locationData.province : ""}${locationData.country ? ", " + locationData.country : ""}`;
             
-                let date  = new Date(new Date().toLocaleString("en-US", 
-                {timeZone: locationData.locationTimeZone})); // current date at the location
+                let date  = new Date(new Date().toLocaleString(
+                    "en-US", 
+                    {timeZone: locationData.locationTimeZone}
+                )); // current date at the location
                 let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 10); // forecast end date
-                let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 
+                document.getElementById('current-date').innerHTML = 
+                `${days[date.getDay() - 1]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+                
+                let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 document.getElementById('today-location-details').innerHTML = 
                 `${locationData.city} weather as of ${time}`;
                 
