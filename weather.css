@@ -6,6 +6,7 @@
   --myBlue: #4466ff;
   --secondColor: #21262b;
   --secondColorLight: #273038;
+  --secondColorDark: #171b1f;
   --headerHeight: 187px;
 }
 * {
@@ -17,9 +18,7 @@
 }
 body {
   height: 100%;
-  background: linear-gradient(135deg, rgba(255,134,0,1) 8%, rgba(0,149,255,1) 85%, rgba(0,114,255,1) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: var(--secondColorDark);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';
 }
 
@@ -440,7 +439,15 @@ footer {
 
 /*Responsive adjustements*/
 @media only screen and (min-width: 480px) {
-  #main-container {max-height: 600px;}
+  body {
+    background: linear-gradient(135deg, rgba(255,134,0,1) 8%, rgba(0,149,255,1) 85%, rgba(0,114,255,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  #main-container {
+    max-height: 600px;
+    box-shadow: 0;
+  }
   #topbar {
     flex-direction: row;
     justify-content: space-between;
