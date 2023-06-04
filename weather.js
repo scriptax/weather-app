@@ -424,7 +424,7 @@ let weatherResults = (function () {
       return {
           // initializing location data for requesting weather data
         initiateWeatherDemo: function (locationData) {
-          const days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'];
+          const days = ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'];
           let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
           document.getElementById('loading-icon').style.display = "block";
@@ -440,8 +440,9 @@ let weatherResults = (function () {
           )); // current date at the location
           let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 10); // forecast end date
             
+          console.log(date.getDay())
           document.getElementById('current-date').innerHTML = 
-          `${days[date.getDay() - 1]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+          `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
           
           let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
           document.getElementById('today-location-details').innerHTML = 
