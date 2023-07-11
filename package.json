@@ -1,0 +1,15 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "A simple weather app with HTML/CSS/JS. With two ways to choose a location: search bar and auto-locate.\r The JS code gathers location, weather and air quality data from [Open-Meteo](https://external.ink?to=/open-meteo.com) with fetch API and \r displays the result in \"Today\", \"Hourly\" and \"Daily\" sections. The weather API is free, so you may notice inaccuracy in weather data.\r The code may not be efficient, so I'm refactoring/optimizing it as I learn new things.\r <a href='https://scriptax.github.io/weather-app/' target='blank'>Weather App</a>",
+  "main": "weather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "npx prettier --write ./**/*.{js}"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^3.0.0"
+  }
+}
