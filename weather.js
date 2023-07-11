@@ -333,7 +333,7 @@ let weatherResults = (function () {
         const detailTitles = ["Wind", "UV Index", "Percipation", "Percipation Hours", "Sunrise", "Sunset"];
         const detailIcons = ["wind", "brightness-low", "droplet-half", "clock-history", "sunrise", "sunset"];
 
-        for(let i = 0; i < 10; i++) {
+        for(let i = 0; i < dailyData.time.length; i++) {
           let parent = document.createElement('DIV');
           let options = {day:"numeric", month:"short", weekday:"short"};
           let forecastDate = new Date(dailyData.time[i]);
@@ -438,9 +438,8 @@ let weatherResults = (function () {
             "en-US", 
             {timeZone: locationData.locationTimeZone}
           )); // current date at the location
-          let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 10); // forecast end date
+          let date2 = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 15); // forecast end date
             
-          console.log(date.getDay())
           document.getElementById('current-date').innerHTML = 
           `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
           
