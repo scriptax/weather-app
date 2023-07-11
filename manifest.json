@@ -1,6 +1,6 @@
 {
   "short_name": "Weather",
-  "name": "Sky Weather",
+  "name": "Weather",
   "icons": [
     {
       "src": "./icons/favicon.ico",
