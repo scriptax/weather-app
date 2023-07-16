@@ -39,6 +39,7 @@ const autoLocateHandler = (function () {
     }
   }
   return function () {
+    document.getElementById("loading-icon").style.display = "block"
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(sendPosition, showError);
     } else {
