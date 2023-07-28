@@ -39,7 +39,7 @@ const autoLocateHandler = (function () {
     }
   }
   return function () {
-    document.getElementById("loading-icon").style.display = "block"
+    document.getElementById("loading-icon").style.display = "block";
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(sendPosition, showError);
     } else {
@@ -696,6 +696,18 @@ window.addEventListener("load", () => {
     let instance = weatherResults.getInstance();
     let locData = JSON.parse(localStorage.getItem("weatherLatestLocData"));
     instance.initiateWeatherDemo(locData);
+  }
+
+  // Registering service worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log("Service worker registered:", registration);
+      })
+      .catch((error) => {
+        console.log("Service worker registration failed:", error);
+      });
   }
 });
 
